@@ -8,7 +8,7 @@ import { INSTAGRAM, NAV, WA } from "@/lib/site";
 type LenisLike = {
   stop: () => void;
   start: () => void;
-  scrollTo: (target: HTMLElement, options?: { offset?: number; immediate?: boolean }) => void;
+  scrollTo: (target: number, options?: { immediate?: boolean; force?: boolean }) => void;
 };
 
 function getLenis() {
@@ -67,11 +67,13 @@ export function Header() {
       requestAnimationFrame(() => {
         const target = document.querySelector<HTMLElement>(href);
         if (!target) return;
+        const header = document.querySelector("header")?.getBoundingClientRect().height ?? 80;
+        const y = target.getBoundingClientRect().top + window.scrollY - header;
         const lenis = getLenis();
         if (lenis) {
-          lenis.scrollTo(target, { offset: -88, immediate: true });
+          lenis.scrollTo(y, { immediate: true, force: true });
         } else {
-          target.scrollIntoView({ block: "start" });
+          window.scrollTo({ top: y });
         }
         history.replaceState(null, "", href);
       });
@@ -147,29 +149,46 @@ export function Header() {
         </div>
       </div>
 
+      {/* Fundo escurecido: clicar fora fecha o menu */}
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-hidden
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 z-0 bg-ink/25 transition-opacity duration-200 lg:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
+      {/* Menu suspenso no canto, abaixo do botão */}
       <div
         id="menu-mobile"
         data-lenis-prevent
         aria-hidden={!open}
-        className={`fixed inset-x-0 bottom-0 top-[5rem] z-10 h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain bg-salt text-ink lg:hidden ${
-          open ? "block" : "hidden"
+        className={`absolute right-4 top-[calc(5rem-0.25rem)] z-30 w-[min(17rem,calc(100vw-2rem))] origin-top-right rounded-3xl bg-salt p-2 text-ink shadow-[0_24px_60px_-20px_rgba(15,17,21,0.45)] ring-1 ring-ink/10 transition duration-200 ease-out lg:hidden ${
+          open
+            ? "visible translate-y-0 scale-100 opacity-100"
+            : "invisible -translate-y-2 scale-95 opacity-0"
         }`}
       >
-        <nav
-          className="flex min-h-full w-full flex-col justify-end gap-1 px-6 pb-10 pt-6"
-          aria-label="Menu"
-        >
+        <nav className="flex flex-col" aria-label="Menu">
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
+              tabIndex={open ? 0 : -1}
               onClick={(event) => goTo(event, item.href)}
-              className="font-display py-1 text-5xl leading-[0.95] sm:text-6xl"
+              className="font-accent rounded-2xl px-4 py-3 text-xl leading-tight transition-colors hover:bg-foam active:bg-sand"
             >
               {item.label}
             </a>
           ))}
-          <a href={WA.trial} className="btn btn-sun mt-8 w-fit" onClick={() => setOpen(false)}>
+          <a
+            href={WA.trial}
+            tabIndex={open ? 0 : -1}
+            className="btn btn-sun mt-2 w-full"
+            onClick={() => setOpen(false)}
+          >
             Aula experimental
           </a>
         </nav>
