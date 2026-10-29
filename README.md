@@ -2,6 +2,8 @@
 
 Landing do CT Rui Pai no Recreio dos Bandeirantes: aulas de futevôlei na praia (Posto 11) e na Praça Mozart Firmeza.
 
+[**Site no ar**](https://rpai-futevolei.vercel.app) · [**Código**](https://github.com/lucashaddadvieiracyber/rpai-futevolei)
+
 ## Rodar local
 
 ```bash
