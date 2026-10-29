@@ -17,7 +17,7 @@ export function RuiStory() {
               <span className="motion-line">Rui Pai.</span>
             </span>
           </h2>
-          <figure className="relative mt-10 aspect-[4/5] overflow-hidden">
+          <figure className="relative mt-10 aspect-[4/5] overflow-hidden rounded-[1.75rem]">
             <Image
               src="/media/rui.jpg"
               alt="Rui Nogueira, o Rui Pai, ensinando fundamento de futevôlei a uma criança na areia do Recreio."

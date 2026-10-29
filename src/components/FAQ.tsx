@@ -38,7 +38,7 @@ export function FAQ() {
                 <span className="font-display text-2xl leading-tight md:text-3xl">
                   {item.q}
                 </span>
-                <span aria-hidden="true" className="mt-2 text-sun">
+                <span aria-hidden="true" className="mt-2 text-net">
                   +
                 </span>
               </summary>

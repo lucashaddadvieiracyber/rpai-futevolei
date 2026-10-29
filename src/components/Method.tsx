@@ -5,8 +5,8 @@ const STEPS = [
     n: "01",
     title: "Nivelamento",
     text: "Você chega, a gente vê o toque. Iniciante treina com iniciante — ninguém é jogado no fundo da quadra.",
-    src: "/media/rui.jpg",
-    alt: "Rui Pai nivelando uma criança no fundamento, na areia do Recreio.",
+    src: "/media/court5.png",
+    alt: "Aluna do CT treinando o toque na rede, na quadra de areia.",
   },
   {
     n: "02",
@@ -19,16 +19,16 @@ const STEPS = [
     n: "03",
     title: "Jogo real",
     text: "A aula vira game: cobertura, tempo de bola, ponto. O fundamento tem que aparecer na hora do jogo.",
-    src: "/media/athletes-back.jpg",
-    alt: "Alunas do CT de frente para a quadra e o mar, prontas para o game.",
+    src: "/media/court6.png",
+    alt: "Atleta do CT dominando a bola de futevôlei na praia, em situação de jogo.",
   },
 ];
 
 export function Method() {
   return (
-    <section id="metodo" className="bg-ink py-24 text-foam md:py-32">
+    <section id="metodo" className="bg-salt py-24 text-ink md:py-32">
       <div className="wrap">
-        <p className="kicker text-sun" data-reveal>
+        <p className="kicker text-olive" data-reveal>
           Método
         </p>
         <h2
@@ -43,14 +43,14 @@ export function Method() {
             <span className="motion-line">Nivela. Joga.</span>
           </span>
         </h2>
-        <p className="mt-6 max-w-xl text-foam/70" data-reveal>
+        <p className="mt-6 max-w-xl text-ink/70" data-reveal>
           Do primeiro toque ao game. Turmas por nível, aula para meninas e
           crianças, personal no seu ritmo.
         </p>
         <ol className="mt-14 grid gap-8 md:grid-cols-3" data-reveal-group>
           {STEPS.map((step) => (
             <li key={step.n} data-reveal-item>
-              <figure className="relative aspect-[4/5] overflow-hidden">
+              <figure className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem]">
                 <Image
                   src={step.src}
                   alt={step.alt}
@@ -59,9 +59,9 @@ export function Method() {
                   sizes="(min-width: 768px) 30vw, 100vw"
                 />
               </figure>
-              <p className="kicker mt-6 text-sun">{step.n}</p>
+              <p className="kicker mt-6 text-olive">{step.n}</p>
               <h3 className="font-display mt-2 text-4xl">{step.title}</h3>
-              <p className="mt-3 text-foam/70">{step.text}</p>
+              <p className="mt-3 text-ink/70">{step.text}</p>
             </li>
           ))}
         </ol>

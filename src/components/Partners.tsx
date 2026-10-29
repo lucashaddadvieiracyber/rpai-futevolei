@@ -48,15 +48,15 @@ export function Partners() {
             <span className="motion-line">com o CT.</span>
           </span>
         </h2>
-        <ul className="mt-14 grid grid-cols-2 gap-px bg-ink/10 md:grid-cols-4" data-reveal-group>
+        <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4" data-reveal-group>
           {PARTNERS.map((partner) => (
             <li
               key={partner.name}
-              className="flex flex-col items-center bg-foam px-6 py-10 text-center"
+              className="card flex flex-col items-center px-6 py-10 text-center"
               data-reveal-item
             >
               <span
-                className={`relative flex h-24 w-40 items-center justify-center overflow-hidden ${
+                className={`relative flex h-24 w-40 items-center justify-center overflow-hidden rounded-2xl ${
                   partner.dark ? "bg-ink" : "bg-white"
                 }`}
               >

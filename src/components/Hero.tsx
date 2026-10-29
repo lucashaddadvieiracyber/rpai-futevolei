@@ -10,6 +10,7 @@ export function Hero() {
       data-parallax-section
     >
       <div className="absolute inset-0">
+        <div className="absolute inset-x-0 top-0" data-parallax-image data-parallax-speed="0.12">
         <Image
           src="/media/team-stand.jpg"
           alt="Equipe do CT Rui Pai na quadra de areia do Recreio, uniformizada, com a rede ao fundo."
@@ -17,12 +18,11 @@ export function Hero() {
           priority
           sizes="100vw"
           className="object-cover object-[72%_22%] md:object-[78%_18%]"
-          data-parallax-image
-          data-parallax-speed="0.12"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/10 md:via-ink/70 md:to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/80 to-transparent" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/75 via-ink/45 to-ink/10 md:via-ink/35 md:to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-ink/30 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/55 to-transparent" />
       </div>
       <div className="wrap relative flex min-h-dvh flex-col justify-end pb-28 pt-32 md:justify-center md:pb-24 md:pt-28">
         <p className="kicker text-sun" data-reveal>

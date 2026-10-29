@@ -58,6 +58,12 @@ const jsonLd = {
     addressCountry: "BR",
   },
   sameAs: ["https://www.instagram.com/ct.rpai_futevolei_personal/"],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "19",
+    bestRating: "5",
+  },
 };
 
 export default function RootLayout({

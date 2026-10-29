@@ -10,7 +10,7 @@ export function Header() {
   const [solid, setSolid] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 24);
+    const onScroll = () => setSolid(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -25,20 +25,22 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 text-foam transition-colors duration-500 ${
-        solid || open ? "bg-ink" : "bg-gradient-to-b from-ink/90 to-transparent"
+      className={`fixed inset-x-0 top-0 z-40 text-ink transition-all duration-400 ${
+        solid || open
+          ? "border-b border-ink/10 bg-salt/95 backdrop-blur-md"
+          : "bg-salt/80 backdrop-blur-sm"
       }`}
     >
-      <div className="wrap flex h-[4.5rem] items-center justify-between gap-6">
+      <div className="wrap flex h-[5rem] items-center justify-between gap-6">
         <a href="#topo" className="relative z-50" aria-label="Rui Pai CT Futevôlei, início">
-          <BrandMark invert />
+          <BrandMark />
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Seções">
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-[0.78rem] font-semibold tracking-[0.14em] uppercase opacity-80 transition-opacity hover:opacity-100"
+              className="text-[0.78rem] font-semibold tracking-[0.14em] uppercase opacity-70 transition-opacity hover:opacity-100"
             >
               {item.label}
             </a>
@@ -50,7 +52,7 @@ export function Header() {
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram do CT Rui Pai"
-            className="opacity-80 hover:opacity-100"
+            className="opacity-70 hover:opacity-100"
           >
             <IconInstagram className="h-5 w-5" />
           </a>
@@ -76,7 +78,7 @@ export function Header() {
       <div
         id="menu-mobile"
         hidden={!open}
-        className="fixed inset-0 z-40 bg-ink text-foam lg:hidden"
+        className="fixed inset-0 z-40 bg-salt text-ink lg:hidden"
       >
         <nav className="flex h-dvh flex-col justify-end gap-2 px-6 pb-10 pt-24" aria-label="Menu">
           {NAV.map((item) => (

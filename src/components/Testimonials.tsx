@@ -1,56 +1,93 @@
-import Image from "next/image";
-import { REVIEWS } from "@/lib/site";
+import { GOOGLE_RATING, GOOGLE_REVIEWS_URL, REVIEWS } from "@/lib/site";
+import { IconArrow, IconGoogle, IconStar } from "./Icons";
+
+function Stars({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <span className="inline-flex gap-0.5 text-[#F8BB06]" aria-label="5 de 5 estrelas">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <IconStar key={i} className={className} />
+      ))}
+    </span>
+  );
+}
+
+const AVATAR = ["bg-sun text-ink", "bg-net text-white", "bg-ink text-white"];
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
 
 export function Testimonials() {
   return (
-    <section className="bg-ink py-24 text-foam md:py-32">
+    <section id="avaliacoes" className="bg-salt py-24 text-ink md:py-32">
       <div className="wrap">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <p className="kicker text-sun" data-reveal>
-              Google · 19 avaliações
-            </p>
-            <h2
-              className="font-display mt-4 max-w-[12ch] text-[12vw] md:text-7xl"
-              data-motion-text="lines"
-              aria-label="Quem treina, volta."
-            >
-              <span className="motion-line-mask">
-                <span className="motion-line">Quem treina,</span>
+        <p className="kicker text-olive">Depoimentos dos nossos alunos</p>
+        <div className="mt-4 flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
+          <h2 className="font-display max-w-[12ch] text-[12vw] md:text-7xl">
+            Quem treina,
+            <br />
+            volta.
+          </h2>
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="card flex w-full max-w-sm items-center gap-5 p-6 transition-transform hover:-translate-y-0.5"
+          >
+            <IconGoogle className="h-10 w-10 shrink-0" />
+            <span>
+              <span className="flex flex-wrap items-center gap-2">
+                <strong className="font-display text-2xl">{GOOGLE_RATING.label}</strong>
+                <Stars className="h-5 w-5" />
               </span>
-              <span className="motion-line-mask">
-                <span className="motion-line">volta.</span>
+              <span className="mt-1 block text-sm text-ink/55">
+                {GOOGLE_RATING.value} · com base em {GOOGLE_RATING.count} avaliações no Google
               </span>
-            </h2>
-          </div>
-          <p className="max-w-xs text-foam/60" data-reveal>
-            Textos reais das avaliações. Sem retrato inventado — o nome é o que o
-            Google publicou.
-          </p>
+              <span className="mt-2 inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-olive">
+                Ver no Google
+                <IconArrow className="h-3.5 w-3.5" />
+              </span>
+            </span>
+          </a>
         </div>
-        <div className="mt-16 grid gap-px bg-foam/10 md:grid-cols-2" data-reveal-group>
-          {REVIEWS.map((review) => (
-            <blockquote key={review.name} className="bg-ink p-8 md:p-10" data-reveal-item>
-              <p className="font-accent text-2xl leading-snug text-foam">
+
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {REVIEWS.map((review, i) => (
+            <blockquote
+              key={review.name}
+              className="card flex flex-col p-7"
+            >
+              <header className="flex items-center gap-3">
+                <span
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-display text-sm tracking-normal ${AVATAR[i % AVATAR.length]}`}
+                  aria-hidden="true"
+                >
+                  {initials(review.name)}
+                </span>
+                <span>
+                  <cite className="block text-sm font-bold not-italic">{review.name}</cite>
+                  <span className="text-xs text-ink/45">{review.date}</span>
+                </span>
+              </header>
+              <span className="mt-4 inline-flex">
+                <Stars className="h-4 w-4" />
+              </span>
+              <p className="mt-4 flex-1 text-[1rem] leading-relaxed text-ink/80">
                 “{review.text}”
               </p>
-              <footer className="mt-8 text-sm text-foam/50">
-                <cite className="not-italic text-sand">{review.name}</cite>
-                <span className="mx-2">·</span>
-                {review.date}
-              </footer>
+              <p className="mt-6 inline-flex items-center gap-2 text-xs font-medium text-ink/40">
+                <IconGoogle className="h-3.5 w-3.5" />
+                Postado no Google
+              </p>
             </blockquote>
           ))}
         </div>
-        <figure className="relative mt-16 aspect-[16/9] overflow-hidden">
-          <Image
-            src="/media/team-stand.jpg"
-            alt="Equipe do CT Rui Pai reunida na quadra de areia do Recreio, com a rede ao fundo."
-            fill
-            className="object-cover object-top"
-            sizes="(min-width: 1180px) 1180px, 100vw"
-          />
-        </figure>
       </div>
     </section>
   );

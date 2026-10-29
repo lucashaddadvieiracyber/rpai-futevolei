@@ -5,11 +5,10 @@ export function WhatsFloat() {
   return (
     <a
       href={WA.trial}
-      className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 bg-sun px-4 py-3 text-xs font-bold tracking-wider text-ink uppercase shadow-[0_12px_40px_rgba(20,23,17,0.28)] md:bottom-8 md:right-8"
-      data-magnetic="0.1"
+      aria-label="Chamar no WhatsApp"
+      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] transition hover:scale-105 hover:bg-[#20bd5a] md:bottom-8 md:right-8 md:h-16 md:w-16"
     >
-      <IconWhatsApp className="h-5 w-5" />
-      WhatsApp
+      <IconWhatsApp className="h-8 w-8 md:h-9 md:w-9" />
     </a>
   );
 }

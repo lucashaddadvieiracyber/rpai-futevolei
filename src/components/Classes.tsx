@@ -6,11 +6,11 @@ export function Classes() {
   const [main, ...rest] = OFFERS;
 
   return (
-    <section id="aulas" className="bg-ink py-24 text-foam md:py-32">
+    <section id="aulas" className="bg-foam py-24 text-ink md:py-32">
       <div className="wrap">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <p className="kicker text-sun" data-reveal>
+            <p className="kicker text-olive" data-reveal>
               Aulas
             </p>
             <h2
@@ -26,17 +26,17 @@ export function Classes() {
               </span>
             </h2>
           </div>
-          <p className="max-w-sm text-foam/70" data-reveal>
+          <p className="max-w-sm text-ink/70" data-reveal>
             Veja as atividades que você pode fazer no CT Rui Pai. Turmas por
             nível, personal e Clubinho no fim de semana. A grade sai no WhatsApp.
           </p>
         </div>
 
         <article
-          className="mt-16 grid gap-8 border-t border-foam/10 pt-12 lg:grid-cols-12"
+          className="mt-16 grid gap-8 border-t border-ink/10 pt-12 lg:grid-cols-12"
           data-reveal
         >
-          <figure className="relative aspect-[4/5] overflow-hidden lg:col-span-5">
+          <figure className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] lg:col-span-5">
             <Image
               src="/media/athletes-side.jpg"
               alt="Duas alunas do CT Rui Pai na areia do Recreio, cada uma com uma bola de futevôlei."
@@ -47,13 +47,13 @@ export function Classes() {
           </figure>
           <div className="flex flex-col justify-between lg:col-span-7 lg:pl-10">
             <div>
-              <p className="kicker text-sun">{main.kicker}</p>
+              <p className="kicker text-olive">{main.kicker}</p>
               <h3 className="font-display mt-4 text-6xl md:text-8xl">{main.title}</h3>
-              <p className="mt-6 max-w-lg text-lg text-foam/75">{main.blurb}</p>
-              <p className="mt-8 font-accent text-3xl text-sand">
+              <p className="mt-6 max-w-lg text-lg text-ink/75">{main.blurb}</p>
+              <p className="mt-8 font-accent text-3xl text-net">
                 a partir de R$ {main.price}
               </p>
-              <p className="mt-3 text-sm tracking-wide text-foam/55">
+              <p className="mt-3 text-sm tracking-wide text-ink/55">
                 {main.freqs.join("  ·  ")}
               </p>
             </div>
@@ -64,16 +64,16 @@ export function Classes() {
           </div>
         </article>
 
-        <div className="mt-4 grid gap-px bg-foam/10 md:grid-cols-2" data-reveal-group>
+        <div className="mt-4 grid gap-px bg-ink/10 md:grid-cols-2" data-reveal-group>
           {rest.map((offer) => (
-            <article key={offer.id} className="bg-ink py-12 md:pr-10 md:even:pl-10" data-reveal-item>
-              <p className="kicker text-sun">{offer.kicker}</p>
+            <article key={offer.id} className="bg-foam py-12 md:pr-10 md:even:pl-10" data-reveal-item>
+              <p className="kicker text-olive">{offer.kicker}</p>
               <h3 className="font-display mt-3 text-5xl">{offer.title}</h3>
-              <p className="mt-4 max-w-md text-foam/70">{offer.blurb}</p>
-              <p className="mt-6 font-accent text-2xl text-sand">
+              <p className="mt-4 max-w-md text-ink/70">{offer.blurb}</p>
+              <p className="mt-6 font-accent text-2xl text-net">
                 a partir de R$ {offer.price}
               </p>
-              <p className="mt-2 text-sm text-foam/50">{offer.freqs.join("  ·  ")}</p>
+              <p className="mt-2 text-sm text-ink/50">{offer.freqs.join("  ·  ")}</p>
               <a href={offer.href} className="btn btn-ghost mt-8 w-fit">
                 Quero este
               </a>
@@ -81,9 +81,9 @@ export function Classes() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-6 border-t border-foam/10 pt-10 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-xl text-foam/75">
-            Day use aos sábados: <strong className="text-foam">R$ 10</strong> para
+        <div className="mt-12 flex flex-col gap-6 border-t border-ink/10 pt-10 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-xl text-ink/75">
+            Day use aos sábados: <strong className="text-ink">R$ 10</strong> para
             aluno e não aluno. Gympass / Wellhub a partir do plano Silver+.
           </p>
           <a href={WA.gympass} className="btn btn-ghost w-fit">

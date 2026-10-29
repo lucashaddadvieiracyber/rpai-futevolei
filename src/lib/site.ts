@@ -21,9 +21,19 @@ export const NAV = [
   { href: "#aulas", label: "Aulas" },
   { href: "#metodo", label: "Método" },
   { href: "#rui", label: "Rui" },
+  { href: "#avaliacoes", label: "Alunos" },
   { href: "#parceiros", label: "Parceiros" },
   { href: "#onde", label: "Onde" },
 ];
+
+export const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Rui+Pai+Futevôlei+Personal+Recreio+dos+Bandeirantes";
+
+export const GOOGLE_RATING = {
+  value: "5.0",
+  label: "Excelente",
+  count: 19,
+};
 
 export const STATS = [
   { value: "11", label: "quadras", detail: "7 na praia · 4 na praça" },
@@ -121,23 +131,43 @@ export const INFRA = [
 export const REVIEWS = [
   {
     name: "Arnaldo Linhares",
-    date: "jun 2023",
-    text: "Excelente CT. Ambiente maravilhoso, professores dedicados e atentos. Várias quadras. O Ruy está sempre alerta em relação a todos os participantes. Vale a pena experimentar.",
-  },
-  {
-    name: "Luis Fernando Gomes dos Santos",
-    date: "jun 2023",
-    text: "Muito boa estrutura, equipe atenciosa e treinamento top. Me senti em casa.",
+    date: "29/06/2023",
+    text: "Excelente CT. Ambiente maravilhoso, professores dedicados e atentos. Várias quadras. O Ruy está sempre alerta em relação a todos os participantes. Vale a pena experimentar!!",
   },
   {
     name: "Jhonatan Gama",
-    date: "jul 2023",
-    text: "Esse CT é brabo. CT RPai, você é uma máquina, pai.",
+    date: "02/07/2023",
+    text: "Esse ct é Braboooo Ct Rpai vc é uma máquina paii",
+  },
+  {
+    name: "Julio Fontenelle",
+    date: "29/06/2023",
+    text: "Melhor CT do Brasil 🇧🇷",
+  },
+  {
+    name: "Luis Fernando Gomes dos Santos",
+    date: "29/06/2023",
+    text: "Muito boa estrutura, equipe atenciosa e treinamento top. Me senti em casa",
+  },
+  {
+    name: "Gustavo Mello",
+    date: "29/06/2023",
+    text: "Melhor ct do RJ!",
+  },
+  {
+    name: "Jss Ar condicionado",
+    date: "02/07/2023",
+    text: "O melhor CT d futevôlei",
   },
   {
     name: "Fabio Dutra",
-    date: "jun 2023",
-    text: "Complexo esportivo de qualidade.",
+    date: "29/06/2023",
+    text: "Complexo esportivo de qualidade!!!",
+  },
+  {
+    name: "Victor hugo Almeida",
+    date: "29/06/2023",
+    text: "Melhor do rio !",
   },
 ];
 

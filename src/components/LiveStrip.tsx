@@ -21,7 +21,7 @@ const SIDE = [
 
 export function LiveStrip() {
   return (
-    <section aria-label="O CT acontecendo" className="bg-ink text-foam">
+    <section aria-label="O CT acontecendo" className="bg-foam text-ink">
       <div className="grid md:grid-cols-12">
         <figure className="relative aspect-[4/5] overflow-hidden md:col-span-6 md:aspect-auto md:min-h-[720px]">
           <Image
@@ -49,13 +49,13 @@ export function LiveStrip() {
       </div>
       <div className="wrap flex flex-col gap-3 py-8 md:flex-row md:items-end md:justify-between md:py-10">
         <div>
-          <p className="kicker text-sun">O CT acontecendo</p>
-          <p className="mt-3 max-w-xl text-lg text-foam/85">
+          <p className="kicker text-olive">O CT acontecendo</p>
+          <p className="mt-3 max-w-xl text-lg text-ink/80">
             Turma na areia, fundamento na faixa, game no fim da aula. É isso que
             você encontra no Posto 11 e na Praça Mozart Firmeza.
           </p>
         </div>
-        <p className="max-w-xs text-sm text-foam/55">
+        <p className="max-w-xs text-sm text-ink/55">
           Todos os níveis, do iniciante ao profissional.
         </p>
       </div>

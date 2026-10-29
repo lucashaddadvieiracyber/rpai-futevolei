@@ -43,7 +43,7 @@ export function Videos() {
                 rel="noreferrer"
                 className="group block"
               >
-                <span className="relative block aspect-video overflow-hidden bg-ink">
+                <span className="relative block aspect-video overflow-hidden rounded-[1.25rem] bg-ink">
                   <Image
                     src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`}
                     alt=""
@@ -51,7 +51,7 @@ export function Videos() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(min-width: 768px) 50vw, 100vw"
                   />
-                  <span className="absolute left-4 top-4 bg-sun px-2 py-1 text-xs font-bold tracking-wider text-ink">
+                  <span className="absolute left-4 top-4 rounded-full bg-sun px-3 py-1 text-xs font-bold tracking-wider text-ink">
                     {video.duration}
                   </span>
                 </span>

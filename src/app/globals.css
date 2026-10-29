@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-ink: #141711;
-  --color-foam: #f4efe6;
-  --color-sun: #e3b13a;
-  --color-sand: #c9b48a;
-  --color-olive: #6e7147;
-  --color-salt: #faf7f1;
-  --color-net: #c44732;
+  --color-ink: #0f1115;
+  --color-foam: #f6f6f3;
+  --color-sun: #ffd23f;
+  --color-sand: #e9e6df;
+  --color-olive: #d9262c;
+  --color-salt: #ffffff;
+  --color-net: #d9262c;
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-archivo);
 }
 
 :root {
-  --header-h: 4.5rem;
+  --header-h: 5rem;
 }
 
 html {
@@ -92,6 +92,7 @@ section[id] {
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid transparent;
+  border-radius: 999px;
   transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease,
     transform 0.35s ease;
 }
@@ -102,7 +103,8 @@ section[id] {
 }
 
 .btn-sun:hover {
-  background: #f0c45c;
+  background: #ffdc66;
+  transform: translateY(-1px);
 }
 
 .btn-ghost {
@@ -140,12 +142,22 @@ html.has-motion [data-image-reveal] {
 .motion-line-mask {
   display: block;
   overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.card {
+  background: #fff;
+  border-radius: 1.75rem;
+  box-shadow: 0 1px 2px rgb(15 17 21 / 0.04), 0 18px 40px -22px rgb(15 17 21 / 0.18);
 }
 
 .motion-word-mask {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
 }
 
 .motion-line,

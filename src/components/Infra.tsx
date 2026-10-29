@@ -21,7 +21,7 @@ export function Infra() {
               <span className="motion-line">além da rede.</span>
             </span>
           </h2>
-          <figure className="relative mt-10 aspect-[4/5] overflow-hidden">
+          <figure className="relative mt-10 aspect-[4/5] overflow-hidden rounded-[1.75rem]">
             <Image
               src="/media/athletes-back.jpg"
               alt="Alunas do CT de frente para a quadra e o mar do Recreio, com a rede ao fundo."

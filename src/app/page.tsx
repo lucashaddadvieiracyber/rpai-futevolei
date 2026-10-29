@@ -6,12 +6,12 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Infra } from "@/components/Infra";
-import { LiveStrip } from "@/components/LiveStrip";
 import { Locations } from "@/components/Locations";
 import { Method } from "@/components/Method";
 import { MotionRoot } from "@/components/MotionRoot";
 import { Partners } from "@/components/Partners";
 import { RuiStory } from "@/components/RuiStory";
+import { StatsBand } from "@/components/StatsBand";
 import { Testimonials } from "@/components/Testimonials";
 import { Videos } from "@/components/Videos";
 import { WhatsFloat } from "@/components/WhatsFloat";
@@ -22,7 +22,7 @@ export default function Home() {
       <Header />
       <main id="conteudo">
         <Hero />
-        <LiveStrip />
+        <StatsBand />
         <Courts />
         <Method />
         <Classes />
