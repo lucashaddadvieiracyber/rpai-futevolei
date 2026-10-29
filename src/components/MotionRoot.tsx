@@ -39,6 +39,7 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
         autoRaf: false,
       });
 
+      (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
       lenis.on("scroll", ScrollTrigger.update);
       const ticker = (time: number) => lenis.raf(time * 1000);
       gsap.ticker.add(ticker);
@@ -70,6 +71,7 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
         window.clearTimeout(safety);
         window.removeEventListener("load", onLoad);
         gsap.ticker.remove(ticker);
+        delete (window as unknown as { __lenis?: Lenis }).__lenis;
         lenis.destroy();
         ScrollTrigger.getAll().forEach((t) => t.kill());
       };

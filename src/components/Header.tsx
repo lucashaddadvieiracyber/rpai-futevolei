@@ -5,6 +5,16 @@ import { BrandMark } from "./BrandMark";
 import { IconInstagram } from "./Icons";
 import { INSTAGRAM, NAV, WA } from "@/lib/site";
 
+type LenisLike = {
+  stop: () => void;
+  start: () => void;
+  scrollTo: (target: HTMLElement, options?: { offset?: number; immediate?: boolean }) => void;
+};
+
+function getLenis() {
+  return (window as unknown as { __lenis?: LenisLike }).__lenis;
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
@@ -17,76 +27,144 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const html = document.documentElement;
+    const lenis = getLenis();
+    html.classList.add("menu-open");
+    html.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    lenis?.stop();
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+
     return () => {
+      html.classList.remove("menu-open");
+      html.style.overflow = "";
       document.body.style.overflow = "";
+      lenis?.start();
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
     };
   }, [open]);
 
+  // Fecha o menu primeiro e só depois rola até a seção,
+  // senão a rolagem acontece com a página ainda travada.
+  const goTo = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) {
+      setOpen(false);
+      return;
+    }
+    event.preventDefault();
+    setOpen(false);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const target = document.querySelector<HTMLElement>(href);
+        if (!target) return;
+        const lenis = getLenis();
+        if (lenis) {
+          lenis.scrollTo(target, { offset: -88, immediate: true });
+        } else {
+          target.scrollIntoView({ block: "start" });
+        }
+        history.replaceState(null, "", href);
+      });
+    });
+  };
+
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-40 text-ink transition-all duration-400 ${
-        solid || open
-          ? "border-b border-ink/10 bg-salt/95 backdrop-blur-md"
-          : "bg-salt/80 backdrop-blur-sm"
-      }`}
-    >
-      <div className="wrap flex h-[5rem] items-center justify-between gap-6">
-        <a href="#topo" className="relative z-50" aria-label="Rui Pai CT Futevôlei, início">
-          <BrandMark />
-        </a>
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Seções">
-          {NAV.map((item) => (
+    <header className="fixed inset-x-0 top-0 z-50 text-ink">
+      <div
+        className={`relative z-20 transition-all duration-400 ${
+          solid || open
+            ? "border-b border-ink/10 bg-salt/95 backdrop-blur-md"
+            : "bg-salt/80 backdrop-blur-sm"
+        }`}
+      >
+        <div className="wrap flex h-[5rem] items-center justify-between gap-6">
+          <a href="#topo" className="relative z-20" aria-label="Rui Pai CT Futevôlei, início">
+            <BrandMark />
+          </a>
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Seções">
+            {NAV.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-[0.78rem] font-semibold tracking-[0.14em] uppercase opacity-70 transition-opacity hover:opacity-100"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className="hidden items-center gap-4 lg:flex">
             <a
-              key={item.href}
-              href={item.href}
-              className="text-[0.78rem] font-semibold tracking-[0.14em] uppercase opacity-70 transition-opacity hover:opacity-100"
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram do CT Rui Pai"
+              className="opacity-70 hover:opacity-100"
             >
-              {item.label}
+              <IconInstagram className="h-5 w-5" />
             </a>
-          ))}
-        </nav>
-        <div className="hidden items-center gap-4 lg:flex">
-          <a
-            href={INSTAGRAM}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Instagram do CT Rui Pai"
-            className="opacity-70 hover:opacity-100"
+            <a href={WA.trial} className="btn btn-sun" data-magnetic="0.12">
+              Aula experimental
+            </a>
+          </div>
+          <button
+            type="button"
+            className="relative z-20 -mr-2 flex h-11 w-11 items-center justify-center lg:hidden"
+            aria-expanded={open}
+            aria-controls="menu-mobile"
+            onClick={() => setOpen((v) => !v)}
           >
-            <IconInstagram className="h-5 w-5" />
-          </a>
-          <a href={WA.trial} className="btn btn-sun" data-magnetic="0.12">
-            Aula experimental
-          </a>
+            <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
+            <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden>
+              {open ? (
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              ) : (
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              )}
+            </svg>
+          </button>
         </div>
-        <button
-          type="button"
-          className="relative z-50 flex h-11 w-11 items-center justify-center lg:hidden"
-          aria-expanded={open}
-          aria-controls="menu-mobile"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
-          <span className="flex flex-col gap-1.5">
-            <span className={`block h-px w-6 bg-current transition ${open ? "translate-y-1 rotate-45" : ""}`} />
-            <span className={`block h-px w-6 bg-current transition ${open ? "opacity-0" : ""}`} />
-            <span className={`block h-px w-6 bg-current transition ${open ? "-translate-y-2 -rotate-45" : ""}`} />
-          </span>
-        </button>
       </div>
+
       <div
         id="menu-mobile"
-        hidden={!open}
-        className="fixed inset-0 z-40 bg-salt text-ink lg:hidden"
+        data-lenis-prevent
+        aria-hidden={!open}
+        className={`fixed inset-x-0 bottom-0 top-[5rem] z-10 h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain bg-salt text-ink lg:hidden ${
+          open ? "block" : "hidden"
+        }`}
       >
-        <nav className="flex h-dvh flex-col justify-end gap-2 px-6 pb-10 pt-24" aria-label="Menu">
+        <nav
+          className="flex min-h-full w-full flex-col justify-end gap-1 px-6 pb-10 pt-6"
+          aria-label="Menu"
+        >
           {NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              onClick={() => setOpen(false)}
-              className="font-display text-[12vw] leading-none"
+              onClick={(event) => goTo(event, item.href)}
+              className="font-display py-1 text-5xl leading-[0.95] sm:text-6xl"
             >
               {item.label}
             </a>

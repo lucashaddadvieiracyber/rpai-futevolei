@@ -132,6 +132,11 @@ section[id] {
   top: 1rem;
 }
 
+html.menu-open .whats-float {
+  opacity: 0;
+  pointer-events: none;
+}
+
 html.has-motion [data-motion-text],
 html.has-motion [data-reveal],
 html.has-motion [data-reveal-item],
